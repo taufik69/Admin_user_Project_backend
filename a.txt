@@ -1,0 +1,63 @@
+project-root/
+├── src/
+│   ├── modules/
+│   │   ├── auth/
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── auth.routes.ts
+│   │   │   ├── auth.validator.ts
+│   │   │   ├── auth.types.ts
+│   │   │   └── index.ts
+│   │   ├── user/
+│   │   │   ├── user.model.ts
+│   │   │   ├── user.controller.ts
+│   │   │   ├── user.service.ts
+│   │   │   ├── user.routes.ts
+│   │   │   ├── user.validator.ts
+│   │   │   ├── user.types.ts
+│   │   │   └── index.ts
+│   │   ├── invite/
+│   │   │   ├── invite.model.ts
+│   │   │   ├── invite.service.ts
+│   │   │   ├── invite.types.ts
+│   │   │   └── index.ts
+│   │   └── project/
+│   │       ├── project.model.ts
+│   │       ├── project.controller.ts
+│   │       ├── project.service.ts
+│   │       ├── project.routes.ts
+│   │       ├── project.validator.ts
+│   │       ├── project.types.ts
+│   │       └── index.ts
+│   ├── shared/
+│   │   ├── config/
+│   │   │   ├── database.ts
+│   │   │   ├── env.ts
+│   │   │   └── constants.ts
+│   │   ├── middlewares/
+│   │   │   ├── auth.middleware.ts
+│   │   │   ├── role.middleware.ts
+│   │   │   ├── errorHandler.middleware.ts
+│   │   │   ├── validator.middleware.ts
+│   │   │   └── index.ts
+│   │   ├── utils/
+│   │   │   ├── jwt.util.ts
+│   │   │   ├── bcrypt.util.ts
+│   │   │   ├── token.util.ts
+│   │   │   ├── apiResponse.util.ts
+│   │   │   ├── apiError.util.ts
+│   │   │   └── index.ts
+│   │   ├── types/
+│   │   │   ├── express.d.ts
+│   │   │   ├── common.types.ts
+│   │   │   └── index.ts
+│   │   └── interfaces/
+│   │       └── index.ts
+│   ├── app.ts
+│   └── server.ts
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── README.md
