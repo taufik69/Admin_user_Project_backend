@@ -51,9 +51,7 @@ const userSchema = new Schema<IUserDocument>(
   }
 );
 
-/* =======================
-   PRE HOOKS
-======================= */
+
 
 // hash password on save
 userSchema.pre('save', async function (next: any) {
@@ -75,9 +73,7 @@ userSchema.pre('findOneAndUpdate', async function () {
   }
 });
 
-/* =======================
-   INSTANCE METHODS
-======================= */
+
 
 // compare password
 userSchema.methods.comparePassword = async function (
@@ -90,46 +86,41 @@ userSchema.methods.comparePassword = async function (
 userSchema.methods.generateJwtRefreshToken = function (): string  {
   return jwt.sign(
     { id: this._id },
-    env.JWT_SECRET ,
+    env.JWT_SECRET,
     {
-      expiresIn: env.REFRESH_TOKEN_EXPIRY ,
+      expiresIn: "15m",
     }
   );
 };
 
 // generate access token
-// userSchema.methods.generateJwtAccessToken = function (): string {
-//   return jwt.sign(
-//     {
-//       id: this._id,
-//       email: this.email,
-//       name: this.name,
-//     },
-//     process.env.ACCESS_TOKEN_SECRET as string,
-//     {
-//       expiresIn: process.env.ACCESS_TOKEN_EXPIRY as string | number,
-//     }
-//   );
-// };
+userSchema.methods.generateJwtAccessToken = function (): string {
+  return jwt.sign(
+    {
+      id: this._id,
+      email: this.email,
+      name: this.name,
+    },
+    env.JWT_SECRET,
+    {
+      expiresIn: "7d",
+    }
+  );
+};
 
 // verify refresh token
-// userSchema.methods.verifyJwtRefreshToken = function (token: string): any {
-//   return jwt.verify(
-//     token,
-//     process.env.REFRESH_TOKEN_SECRET as string
-//   );
-// };
+userSchema.methods.verifyJwtRefreshToken = function (token: string): any {
+  return jwt.verify(
+    token,
+    env.JWT_SECRET
+  );
+};
 
-/* =======================
-   INDEXES
-======================= */
+// indexes
 userSchema.index({ email: 1 });
 userSchema.index({ status: 1 });
 userSchema.index({ role: 1 });
 
-/* =======================
-   MODEL EXPORT
-======================= */
 
 export const User: UserModel =
   mongoose.models.User ||
