@@ -5,6 +5,8 @@ import {
   errorHandler,
   notFound,
 } from "./shared/middlewares/error.middleware.ts";
+import { globalErrorHandeler } from "./shared/utils/globalErrorhandler.utils.ts";
+import { userRoute } from "./modules/user/index.ts";
 
 const app = express();
 app.use(express.json());
@@ -29,7 +31,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-// app.use("/api/v1/auth", userRoute);
+app.use("/api/v1/user", userRoute);
 
 /**
  * const compression = require('compression');
@@ -55,5 +57,5 @@ app.use(compression({
 app.use(notFound);
 
 // Global error handler
-app.use(errorHandler);
+app.use(globalErrorHandeler);
 export { app };
